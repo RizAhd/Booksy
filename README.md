@@ -14,7 +14,7 @@ This is a **Java web application** built using:
 
 - `src/` → Java source code (Servlets, Hibernate, PayHere integration)  
 - `web/` → HTML, CSS, JS, JSP files and images  
-- `database/BooksyDB.sql` → SQL file to create database and tables  
+- `database/booksy.sql` → SQL file to create database and tables  
 - `screenshots/` → Website screenshots for reference  
 - `hibernate.cfg.xml` → Hibernate config (replace placeholders with your DB credentials)  
 - `PayHere.java` / `VerifyPayment.java` → Replace `MERCHANT_ID` and `MERCHANT_SECRET` with your credentials  
