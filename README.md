@@ -40,10 +40,69 @@ This is a **Java web application** built using:
 
 ### 📸 Screenshots
 
-**Homepage**  
-![Homepage](screenshots/homepage.png)
 
-**Login Page**  
-![Login](screenshots/signin.png)
+**Homepage**  
+![Homepage](screenshots/homepage.png)  
+
+**Single Product View**  
+![Single Product View](screenshots/singleproductView.png)  
+
+**Signin**  
+![Signin](screenshots/signin.png)  
+
+**Signup**  
+![Signup](screenshots/signup.png)  
+**Account**  
+![Account](screenshots/account.png)  
+
+**Add Book**  
+![Add Book](screenshots/addbook.png)  
+
+**Bar**  
+![Bar](screenshots/bar.png)  
+
+**Book List**  
+![Book List](screenshots/booklist.png)  
+
+**Cart**  
+![Cart](screenshots/cart.png)  
+
+**Categories**  
+![Categories](screenshots/categories.png)  
+
+**Checkout**  
+![Checkout](screenshots/checkout.png)  
+
+**Filter**  
+![Filter](screenshots/filter.png)  
+
+**Footer**  
+![Footer](screenshots/footer.png)  
+
+
+
+**My Books**  
+![My Books](screenshots/mybooks.png)  
+
+**Order**  
+![Order](screenshots/order.png)  
+
+**Pagination**  
+![Pagination](screenshots/pagination.png)  
+
+**Pay**  
+![Pay](screenshots/pay.png)  
+
+**Search**  
+![Search](screenshots/search.png)  
+
+
+**Single**  
+![Single](screenshots/single.png)  
+
+
+**Verify**  
+![Verify](screenshots/verify.png)  
+
 
 
