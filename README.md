@@ -58,11 +58,6 @@ This is a **Java web application** built using:
 **Add Book**  
 ![Add Book](screenshots/addbook.png)  
 
-**Bar**  
-![Bar](screenshots/bar.png)  
-
-**Book List**  
-![Book List](screenshots/booklist.png)  
 
 **Cart**  
 ![Cart](screenshots/cart.png)  
@@ -78,27 +73,6 @@ This is a **Java web application** built using:
 
 **Footer**  
 ![Footer](screenshots/footer.png)  
-
-
-
-**My Books**  
-![My Books](screenshots/mybooks.png)  
-
-**Order**  
-![Order](screenshots/order.png)  
-
-**Pagination**  
-![Pagination](screenshots/pagination.png)  
-
-**Pay**  
-![Pay](screenshots/pay.png)  
-
-**Search**  
-![Search](screenshots/search.png)  
-
-
-**Single**  
-![Single](screenshots/single.png)  
 
 
 **Verify**  
