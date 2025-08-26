@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Booksy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="toast.css"/>
+               <link rel="icon" href="booksy.png" type="image/png">
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --gray-dark: #475569;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+            
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+            
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Glass Sidebar */
+        .sidebar {
+            width: 300px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--light);
+            padding: 30px 0;
+            transition: var(--transition-slow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            border-right: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-xl);
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 0 25px 25px;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .sidebar-subtitle {
+            color: var(--gray);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 15px 0;
+            height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 25px;
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            margin: 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            color: white;
+        }
+
+        .menu-item:hover::before, .menu-item.active::before {
+            left: 0;
+            opacity: 0.2;
+        }
+
+        .menu-item i {
+            margin-right: 12px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover i, .menu-item.active i {
+            transform: scale(1.1);
+        }
+
+        .menu-text {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .menu-badge {
+            margin-left: auto;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            background: #f5f7fa;
+            transition: var(--transition-slow);
+            margin-left: 300px;
+            min-height: 100vh;
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--darker);
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .account-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Glass Card Sections */
+        .profile-section, .password-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+        }
+
+        .profile-section:hover, .password-section:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--darker);
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 24px;
+        }
+
+        /* Profile Info */
+        .profile-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: var(--shadow-lg);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .profile-pic-container:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-pic-upload {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            cursor: pointer;
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .profile-pic-container:hover .profile-pic-upload {
+            opacity: 1;
+        }
+
+        .profile-details {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .welcome-message {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .welcome-message span {
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .member-since {
+            color: var(--gray-dark);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 3px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Form Styles */
+        .account-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: white;
+        }
+
+        .form-control[readonly] {
+            background: var(--gray-light);
+            opacity: 0.8;
+        }
+
+        .form-actions {
+            grid-column: span 2;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient-dark);
+            box-shadow: 0 6px 8px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(99, 102, 241, 0.05);
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Password Section */
+        .password-section {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Toggle Password Visibility */
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* Overlay for mobile sidebar */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            z-index: 110;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+            transition: var(--transition);
+            border: none;
+        }
+
+        .mobile-menu-toggle.active {
+            transform: rotate(180deg);
+            background: var(--accent);
+        }
+
+        /* Floating Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--darker);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-2xl);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .notification.success .notification-icon {
+            color: var(--success);
+        }
+
+        .notification.error .notification-icon {
+            color: var(--error);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .notification-message {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        .notification-close:hover {
+            color: white;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .main-content {
+                margin-left: 280px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 320px;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 30px;
+            }
+            
+            .account-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .form-actions {
+                grid-column: span 1;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+            }
+            
+            .account-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 25px 20px;
+            }
+            
+            .profile-section, .password-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .profile-section, .password-section {
+                padding: 20px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .profile-pic-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .sidebar {
+                width: 280px;
+            }
+            
+            .notification {
+                max-width: calc(100% - 40px);
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .profile-stats {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body onload="loadData();">
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <div class="container">
+        <!-- Glass Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3 class="sidebar-title">Booksy</h3>
+                <p class="sidebar-subtitle">Your Personal Library</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+                 <a href="index.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">Home</span>
+                  
+                </a>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="menu-text">Profile</span>
+                </a>
+                <a href="addbooks.html" class="menu-item">
+                    <i class="fas fa-book"></i>
+                    <span class="menu-text">Add Books</span>
+                  
+                </a>
+                  <a href="booklisting.html" class="menu-item">
+                    <i class="fas fa-list"></i>
+                    <span class="menu-text">My Books</span>
+                    <span class="menu-badge">5</span>
+                </a>
+                <a href="orders.html" class="menu-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="menu-text">My Orders</span>
+                    
+                </a>
+                <a href="listings.html" class="menu-item">
+                    <i class="fas fa-list"></i>
+                    <span class="menu-text">Listings</span>
+                </a>
+                <a href="address.html" class="menu-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="menu-text">Shipping</span>
+                </a>
+                <a href="" onclick="signOut();" class="menu-item" >
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="menu-text">Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="account-header">
+                <h1 class="page-title">Account Dashboard</h1>
+                <div class="account-status">
+                    <span class="status-badge">Verified Member</span>
+                </div>
+            </div>
+            
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-edit"></i>
+                    Profile Information
+                </h2>
+                
+                <div class="profile-info">
+<!--                    <div class="profile-pic-container">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Picture" class="profile-pic">
+                        <div class="profile-pic-upload">
+                            <i class="fas fa-camera"></i> Change
+                            <input type="file" id="profileUpload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>-->
+                    
+                    <div class="profile-details">
+                        <p class="welcome-message">Welcome back, <span id="username"></span></p>
+                        <p class="member-since" id="since">Member since: </p>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">12</span> Books Listed
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">8</span> Orders
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">4.9</span> Avg Rating
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="account-form" id="profileForm">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" id="firstName" class="form-control" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" value="" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Address1" class="form-label">Mobile Number</label>
+                        <input type="tel" id="mobile" class="form-control" value="">
+                    </div>
+                     <div class="form-group">
+                        <label for="mobile" class="form-label">Address Line 01</label>
+                        <input type="tel" id="lineOne" class="form-control" value="">
+                    </div>
+                     <div class="form-group">
+                        <label for="Address2" class="form-label">Address Line 02</label>
+                        <input type="tel" id="lineTwo" class="form-control" value="">
+                    </div>
+                     <div class="form-group">
+                        <label for="postalCode" class="form-label">Postal Code</label>
+                        <input type="text" id="postalCode" class="form-control" value="">
+                    </div>
+                     <div class="form-group">
+                        <label for="mobile" class="form-label">City</label>
+                        <select id="citySelect" class="form-control">
+                            <option value="0">Select</option>
+                            
+                        </select>
+
+                     </div>
+                    <div class="form-group full-width">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea id="bio" class="form-control" rows="3">Book enthusiast and occasional writer. Love to explore different genres! Currently reading "The psycology Of Money.</textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                       
+                    </div>
+                </form>
+            </section>
+            
+            <!-- Password Section -->
+            <section class="password-section">
+                <h2 class="section-title">
+                    <i class="fas fa-lock"></i>
+                    Security Settings
+                </h2>
+                
+                <form class="account-form" id="passwordForm">
+                    <div class="form-group">
+                        <label for="currentPassword" class="form-label">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-control">
+                        <i class="fas fa-eye password-toggle" id="toggleCurrentPassword"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" id="newPassword" class="form-control">
+                        <i class="fas fa-eye password-toggle" id="toggleNewPassword"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" class="form-control">
+                        <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" onclick="saveChanges();" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Floating Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle notification-icon"></i>
+        <div class="notification-content">
+            <div class="notification-title">Success!</div>
+            <div class="notification-message">Your changes have been saved successfully.</div>
+        </div>
+        <button class="notification-close" id="notificationClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+     <!-- Toast Notification -->
+        <div class="toast" id="toast">
+            <i class="fas fa-check-circle"></i>
+            <span class="toast-message">Book saved successfully!</span>
+        </div>
+    <script>
+        
+         function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastIcon = toast.querySelector('i');
+            const toastMessage = toast.querySelector('.toast-message');
+
+            // Set icon based on type
+            if (type === 'success') {
+                toastIcon.className = 'fas fa-check-circle';
+                toast.classList.remove('error');
+                toast.classList.add('success');
+            } else {
+                toastIcon.className = 'fas fa-exclamation-circle';
+                toast.classList.remove('success');
+                toast.classList.add('error');
+            }
+
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+
+            // Accessibility
+            toast.setAttribute('aria-live', 'assertive');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const sidebar = document.getElementById('sidebar');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const profileUpload = document.querySelector('.profile-pic-upload');
+            const profilePicInput = document.getElementById('profileUpload');
+            const profileForm = document.getElementById('profileForm');
+            const passwordForm = document.getElementById('passwordForm');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const notification = document.getElementById('notification');
+            const notificationClose = document.getElementById('notificationClose');
+            
+            // Toggle sidebar on mobile
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            }
+            
+            mobileMenuToggle.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+            
+//            // Profile picture upload
+//            profileUpload.addEventListener('click', function() {
+//                profilePicInput.click();
+//            });
+//            
+//            profilePicInput.addEventListener('change', function(e) {
+//                if (e.target.files && e.target.files[0]) {
+//                    const reader = new FileReader();
+//                    
+//                    reader.onload = function(event) {
+//                        document.querySelector('.profile-pic').src = event.target.result;
+//                        showNotification('Profile picture updated successfully!', 'success');
+//                    };
+//                    
+//                    reader.readAsDataURL(e.target.files[0]);
+//                }
+//            });
+////            
+//            // Form submissions
+//            profileForm.addEventListener('submit', function(e) {
+//                e.preventDefault();
+//                showNotification('Profile information updated successfully!', 'success');
+//            });
+//            
+//            passwordForm.addEventListener('submit', function(e) {
+//                e.preventDefault();
+//                const newPassword = document.getElementById('newPassword').value;
+//                const confirmPassword = document.getElementById('confirmPassword').value;
+//                
+//                if (newPassword !== confirmPassword) {
+//                    showNotification('Passwords do not match!', 'error');
+//                    return;
+//                }
+//                
+//                // In a real app, you would send this to your backend
+//                showNotification('Password updated successfully!', 'success');
+//                passwordForm.reset();
+//            });
+//            
+            // Password visibility toggle
+            function setupPasswordToggle(inputId, toggleId) {
+                const input = document.getElementById(inputId);
+                const toggle = document.getElementById(toggleId);
+                
+                toggle.addEventListener('click', function() {
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        this.classList.remove('fa-eye');
+                        this.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        this.classList.remove('fa-eye-slash');
+                        this.classList.add('fa-eye');
+                    }
+                });
+            }
+            
+            setupPasswordToggle('currentPassword', 'toggleCurrentPassword');
+            setupPasswordToggle('newPassword', 'toggleNewPassword');
+            setupPasswordToggle('confirmPassword', 'toggleConfirmPassword');
+            
+//            // Logout button
+//            logoutBtn.addEventListener('click', function(e) {
+//                e.preventDefault();
+//                if (confirm('Are you sure you want to logout?')) {
+//                    // In a real app, you would handle logout logic here
+//                    showNotification('Logged out successfully!', 'success');
+//                    setTimeout(() => {
+//                        window.location.href = 'login.html';
+//                    }, 1500);
+//                }
+//            });
+            
+            // Notification system
+            let notificationTimeout;
+            
+            function showNotification(message, type = 'success') {
+                const notificationIcon = notification.querySelector('.notification-icon');
+                const notificationTitle = notification.querySelector('.notification-title');
+                const notificationMsg = notification.querySelector('.notification-message');
+                
+                // Clear any existing timeout
+                clearTimeout(notificationTimeout);
+                
+                // Set notification content
+                if (type === 'success') {
+                    notificationIcon.className = 'fas fa-check-circle notification-icon';
+                    notificationTitle.textContent = 'Success!';
+                    notification.classList.remove('error');
+                    notification.classList.add('success');
+                } else {
+                    notificationIcon.className = 'fas fa-exclamation-circle notification-icon';
+                    notificationTitle.textContent = 'Error!';
+                    notification.classList.remove('success');
+                    notification.classList.add('error');
+                }
+                
+                notificationMsg.textContent = message;
+                notification.classList.add('show');
+                
+                // Auto-hide after 5 seconds
+                notificationTimeout = setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+            
+            notificationClose.addEventListener('click', function() {
+                notification.classList.remove('show');
+                clearTimeout(notificationTimeout);
+            });
+            
+            // Close sidebar when clicking on a menu item (mobile)
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        toggleSidebar();
+                    }
+                });
+            });
+            
+            // Handle window resize
+            function handleResize() {
+                if (window.innerWidth > 992) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            
+            // Initialize
+            handleResize();
+        });
+        
+        
+    </script>
+    <script src="assetts/SignOut.js"></script>
+    <script src="assetts/account.js"></script>
+</body>
+</html>

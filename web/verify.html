@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | Booksy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+           <link rel="icon" href="booksy.png" type="image/png">
+</head>
+<style>
+    
+.code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.code-inputs input {
+    width: 250px;
+   letter-spacing: 8px;
+    height: 60px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--light);
+    transition: var(--transition);
+}
+
+.code-inputs input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+    transform: translateY(-2px);
+}
+
+.code-inputs input.filled {
+    border-color: var(--success);
+    background: rgba(76, 201, 240, 0.05);
+}</style>
+<body>
+    <div class="auth-bg"></div>
+
+<div class="message-bar-container">
+    <div class="message-bar" id="message">
+        <div class="message-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="message-text">Check Your Email and Verify</span>
+        </div>
+        <button class="message-close">&times;</button>
+    </div>
+</div>
+    <div class="verify-container">
+        <div class="verify-card">
+            <div class="verify-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">Booksy</span>
+                </div>
+                <h1>Verify Your Email</h1>
+                <p>We've sent a 6-digit code to <strong>user@example.com</strong></p>
+            </div>
+            
+            <div class="verification-animation">
+                <div class="envelope">
+                    <div class="envelope-front"></div>
+                    <div class="envelope-back"></div>
+                    <div class="letter">
+                        <div class="letter-content">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="verify-form" id="verify-form">
+                <div class="code-inputs">
+                    <input type="text" id="verifyCode"  maxlength="6" inputmode="numeric" pattern="[0-9]*" autofocus>
+                       </div>
+                
+                <button type="button"  onclick="verifyAccount();" class="btn btn-primary">
+                    <span>Verify Account</span>
+                    <i class="fas fa-check-circle"></i>
+                </button>
+            </form>
+            
+            <div class="verify-actions">
+                <button type="button" class="btn btn-text" id="resend-btn">
+                    <span>Resend Code</span>
+                    <i class="fas fa-redo"></i>
+                </button>
+                <p class="resend-timer">Can resend in <span id="countdown">60</span>s</p>
+            </div>
+            
+            <div class="verify-footer">
+                <p>Didn't receive the code? Check spam or <a href="#" id="change-email">use different email</a></p>
+            </div>
+        </div>
+    </div>
+<script>
+   
+</script>
+<script src="assetts/verify.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

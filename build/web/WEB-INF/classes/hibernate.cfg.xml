@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/booksy?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">rizlan4545</property>
+        <property name="hibernate.show_sql">true</property>
+        <!--    <property name="hibernate.hbm2ddl.auto">update</property>  add this -->
+        <mapping class="hibernate.User"/>
+        <mapping class="hibernate.City"/>
+        <mapping class="hibernate.Address"/>
+        <mapping class="hibernate.Category"/>
+        <mapping class="hibernate.Format"/>
+        <mapping class="hibernate.Type"/>
+        <mapping class="hibernate.Status"/>
+        <mapping class="hibernate.Language"/>
+        <mapping class="hibernate.Books"/>
+        <mapping class="hibernate.Cart"/>
+        <mapping class="hibernate.Orders"/>
+        <mapping class="hibernate.OrderItem"/>
+        <mapping class="hibernate.OrderStatus"/>
+ 
+
+    
+    </session-factory>
+</hibernate-configuration>

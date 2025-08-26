@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up | Booksy</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+               <link rel="icon" href="booksy.png" type="image/png">
+    </head>
+    <body>
+        <div class="auth-bg"></div>
+
+        <!-- Message Bar -->
+  <div class="message-bar-container">
+                    <div class="message-bar" id="message">
+                        <div class="message-content">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="message-text">Sign in/ Sign up to access your personalized reading experience - Booksy</span>
+                        </div>
+                        <button class="message-close">&times;</button>
+                    </div>
+                </div>
+        
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">Booksy</span>
+                    </div>
+                    <h1>Create Account</h1>
+                    <p>Join our community of book lovers</p>
+                </div>
+              
+
+                <form class="auth-form" id="signup-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="input-field floating">
+                                <input type="text" id="firstname" name="first-name" required>
+                                <label for="firstname">First Name</label>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-field floating">
+                                <input type="text" id="lastname" name="last-name" required>
+                                <label for="lastname">Last Name</label>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-field floating">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email Address</label>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-field floating">
+                            <input type="tel" id="mobile" name="mobile" required>
+                            <label for="mobile">Mobile Number</label>
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-field floating">
+                            <input type="password" id="password" name="password" required>
+                            <label for="password">Password</label>
+                            <i class="fas fa-lock"></i>
+                            <button type="button" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-meter">
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                            </div>
+                            <span class="strength-text">Password strength: <span class="strength-value">Weak</span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit"  onclick="SignUp();" class="btn btn-primary">
+                        <span>Create Account</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div class="divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <div class="social-auth">
+                        <button type="button" class="btn btn-google">
+                            <i class="fab fa-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="btn btn-apple">
+                            <i class="fab fa-apple"></i>
+                            <span>Apple</span>
+                        </button>
+                    </div>
+
+                    <div class="auth-footer">
+                        Already have an account? <a href="signin.html">Sign in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="assetts/Signup.js"></script>
+        <script src="script.js"></script>
+    </body>
+
+</html>

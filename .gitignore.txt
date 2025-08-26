@@ -1,0 +1,14 @@
+# Ignore build/dist folders
+/build/
+/dist/
+/nbproject/private/
+
+# Ignore compiled Java class files
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
