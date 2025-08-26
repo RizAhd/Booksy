@@ -34,4 +34,14 @@ This is a **Java web application** built using:
 <property name="hibernate.connection.password">your_db_password</property>
 
 
+---
+
+**Homepage**  
+![Homepage](screenshots/homepage.png)
+
+**Login Page**  
+![Login](screenshots/login.png)
+
+**Dashboard**  
+![Dashboard](screenshots/dashboard.png)
 
