@@ -33,11 +33,5 @@ This is a **Java web application** built using:
 <property name="hibernate.connection.username">your_db_username</property>
 <property name="hibernate.connection.password">your_db_password</property>
 
-### 2. Website
 
-**Homepage**  
-![Homepage](screenshots/homepage.png)
-
-**Login Page**  
-![Login](screenshots/signin.png)
 
