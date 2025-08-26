@@ -32,3 +32,18 @@ This is a **Java web application** built using:
 ```xml
 <property name="hibernate.connection.username">your_db_username</property>
 <property name="hibernate.connection.password">your_db_password</property>
+```
+
+---
+
+## Website Images
+
+### 📸 Screenshots
+
+**Homepage**  
+![Homepage](screenshots/homepage.png)
+
+**Login Page**  
+![Login](screenshots/signin.png)
+
+
