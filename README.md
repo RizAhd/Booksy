@@ -26,9 +26,18 @@ This is a **Java web application** built using:
 ### 1. Database
 
 1. Open HeidiSQL or MySQL Workbench  
-2. Import `booksy.sql` to create the database and tables  
+2. Import `database/booksy.sql` to create the database and tables  
 3. Open `src/hibernate.cfg.xml` and update with your MySQL credentials:
 
 ```xml
 <property name="hibernate.connection.username">your_db_username</property>
 <property name="hibernate.connection.password">your_db_password</property>
+
+### 2. Website
+
+**Homepage**  
+![Homepage](screenshots/homepage.png)
+
+**Login Page**  
+![Login](screenshots/signin.png)
+
